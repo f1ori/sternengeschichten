@@ -2,6 +2,14 @@
 
 Eine Web App zum Streamen des [Sternengeschichten Podcast](https://sternengeschichten.podigee.io/) von Florian Freistetter. Eine simple App um alle Episoden eine nach der anderen anzuhören.
 
+**🌐 [Zur App](https://f1ori.github.io/sternengeschichten/)**
+
+## Über diese App
+
+Die **Sternengeschichten Podcast-App** ist die einfachste Podcast-App: optimiert für genau eine Podcast-Serie. Sie ermöglicht es dir, bei einer beliebigen Episode zu starten und die Serie dann Episodenweise durchzuarbeiten. 
+
+Diese App wurde speziell für eine **Schlaf-Routine** entwickelt – zum Anhören einer Episode jeden Abend vor dem Schlafengehen. Sie interferiert nicht mit Playlisten anderer Podcasts.
+
 ## ⚠️ Disclaimer
 
 Diese App ist **nicht** offiziell mit Florian Freistetter oder dem Sternengeschichten-Podcast verbunden. Sie wurde von KI generiert.
