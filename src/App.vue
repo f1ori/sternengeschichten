@@ -18,8 +18,8 @@
     <template v-else>
       <header class="app-header">
         <h1>⭐ Sternengeschichten</h1>
-        <button @click="refreshFeed" class="refresh-btn" :disabled="isRefreshing">
-          {{ isRefreshing ? 'Aktualisiere...' : 'Feed aktualisieren' }}
+        <button @click="refreshFeed" class="refresh-btn" :disabled="isRefreshing" title="Feed aktualisieren">
+          ↻
         </button>
       </header>
 
@@ -171,7 +171,7 @@ onMounted(async () => {
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .refresh-btn {

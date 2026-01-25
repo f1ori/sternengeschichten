@@ -105,7 +105,7 @@ function formatDate(dateStr: string): string {
 
 .list-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .back-btn {
@@ -215,6 +215,7 @@ function formatDate(dateStr: string): string {
   flex: 1;
   line-height: 1.3;
   word-break: break-word;
+  font-size: 0.95rem;
 }
 
 .episode-meta {

@@ -71,7 +71,7 @@
           :disabled="episodeIndex === 0"
           title="Vorherige Episode"
         >
-          ← Vorherige
+          ←
         </button>
         <div class="episode-counter">
           {{ episodeIndex + 1 }} / {{ episodesCount }}
@@ -82,7 +82,7 @@
           :disabled="episodeIndex >= episodesCount - 1"
           title="Nächste Episode"
         >
-          Nächste →
+          →
         </button>
       </div>
     </div>
@@ -250,7 +250,7 @@ const formatTime = (seconds: number): string => {
 
 .detail-header h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.3;
   word-break: break-word;
 }
@@ -390,7 +390,7 @@ const formatTime = (seconds: number): string => {
 }
 
 .nav-btn {
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 0.5rem;
   background: #4a90e2;
   color: white;
   border: none;
@@ -399,7 +399,7 @@ const formatTime = (seconds: number): string => {
   font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.3s;
-  min-width: 120px;
+  min-width: 44px;
 }
 
 .nav-btn:hover:not(:disabled) {
