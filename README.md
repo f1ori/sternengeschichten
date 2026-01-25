@@ -1,10 +1,10 @@
-# 🌙 Sternengeschichten - Podcast PWA
+# ⭐ Sternengeschichten - Podcast PWA
 
-Eine Progressive Web App zum Streamen des [Sternengeschichten](https://sternengeschichten.de/) Podcasts. Die App speichert den RSS-Feed lokal, merkt sich die zuletzt gehörte Episode und schlägt nahtlos die nächste vor – perfekt zum Einschlafen.
+Eine Web App zum Streamen des [Sternengeschichten Podcast](https://sternengeschichten.podigee.io/) von Florian Freistetter. Eine simple App um alle Episoden eine nach der anderen anzuhören.
 
 ## ⚠️ Disclaimer
 
-Diese App ist **nicht** offiziell mit Florian Freistätter oder dem Sternengeschichten-Podcast verbunden. Sie wurde von KI generiert.
+Diese App ist **nicht** offiziell mit Florian Freistetter oder dem Sternengeschichten-Podcast verbunden. Sie wurde von KI generiert.
 
 ## Features
 
