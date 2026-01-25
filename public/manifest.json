@@ -1,0 +1,43 @@
+{
+  "name": "Sternengeschichten Podcast Player",
+  "short_name": "Sternengeschichten",
+  "description": "Progressive Web App zum Streamen von Sternengeschichten - Ein Podcast zum Einschlafen",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1a1a2e",
+  "background_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><circle cx='96' cy='96' r='50' fill='%234a90e2'/><circle cx='96' cy='96' r='40' fill='%231a1a2e'/><circle cx='70' cy='70' r='8' fill='%234a90e2'/><circle cx='122' cy='70' r='8' fill='%234a90e2'/><circle cx='85' cy='110' r='6' fill='%234a90e2'/><circle cx='107' cy='110' r='6' fill='%234a90e2'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a1a2e' width='512' height='512'/><circle cx='256' cy='256' r='130' fill='%234a90e2'/><circle cx='256' cy='256' r='110' fill='%231a1a2e'/><circle cx='200' cy='200' r='20' fill='%234a90e2'/><circle cx='312' cy='200' r='20' fill='%234a90e2'/><circle cx='220' cy='300' r='15' fill='%234a90e2'/><circle cx='292' cy='300' r='15' fill='%234a90e2'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a1a2e' width='540' height='720'/><text x='270' y='100' font-size='48' fill='%234a90e2' text-anchor='middle' font-weight='bold'>Sternengeschichten</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["podcasts", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Letzte Episode fortsetzen",
+      "short_name": "Fortsetzen",
+      "description": "Letzte gehörte Episode fortsetzen",
+      "url": "/?continue",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234a90e2' width='192' height='192'/><path d='M 60 50 L 60 140 L 120 95 Z' fill='%231a1a2e'/></svg>", "sizes": "192x192" }]
+    }
+  ]
+}
