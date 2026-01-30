@@ -6,7 +6,6 @@ const STORAGE_KEY = 'sternengeschichten_playback'
 export const usePlaybackStore = defineStore('playback', () => {
   const currentEpisodeId = ref<string | null>(null)
   const selectedEpisodeId = ref<string | null>(null)
-  const playedEpisodes = ref<Set<string>>(new Set())
 
   const selectEpisode = (episodeId: string) => {
     selectedEpisodeId.value = episodeId
@@ -16,8 +15,8 @@ export const usePlaybackStore = defineStore('playback', () => {
   }
 
   const markEpisodePlayed = (episodeId: string) => {
+    // Keep semantics of marking an episode as the current one, but do not track a played set
     currentEpisodeId.value = episodeId
-    playedEpisodes.value.add(episodeId)
     // Save to localStorage
     saveToStorage()
   }
@@ -35,8 +34,7 @@ export const usePlaybackStore = defineStore('playback', () => {
 
   const saveToStorage = () => {
     const data = {
-      currentEpisodeId: currentEpisodeId.value,
-      playedEpisodes: Array.from(playedEpisodes.value)
+      currentEpisodeId: currentEpisodeId.value
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   }
@@ -47,7 +45,6 @@ export const usePlaybackStore = defineStore('playback', () => {
       try {
         const data = JSON.parse(stored)
         currentEpisodeId.value = data.currentEpisodeId
-        playedEpisodes.value = new Set(data.playedEpisodes || [])
         // Ensure the UI selects the last displayed episode after restoring
         if (currentEpisodeId.value && !selectedEpisodeId.value) {
           selectedEpisodeId.value = currentEpisodeId.value
@@ -61,7 +58,6 @@ export const usePlaybackStore = defineStore('playback', () => {
   return {
     currentEpisodeId,
     selectedEpisodeId,
-    playedEpisodes,
     selectEpisode,
     markEpisodePlayed,
     setCurrentEpisode,

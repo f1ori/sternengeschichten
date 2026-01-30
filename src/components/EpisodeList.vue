@@ -30,7 +30,6 @@
           </div>
           <div class="episode-meta">
             <span class="date">{{ formatDate(episode.pubDate) }}</span>
-            <span v-if="isEpisodePlayed(episode.id)" class="played-badge">✓ Played</span>
           </div>
         </button>
       </div>
@@ -41,7 +40,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { Episode } from '../services/feedService'
-import { usePlaybackStore } from '../stores/playbackStore'
 
 const props = defineProps<{
   episodes: Episode[]
@@ -52,7 +50,6 @@ defineEmits<{
   select: [episodeId: string]
 }>()
 
-const playbackStore = usePlaybackStore()
 const searchQuery = ref('')
 
 const filteredEpisodes = computed(() => {
@@ -67,10 +64,6 @@ const filteredEpisodes = computed(() => {
     return episodeNum.includes(query) || title.includes(query)
   })
 })
-
-const isEpisodePlayed = (episodeId: string): boolean => {
-  return playbackStore.playedEpisodes.has(episodeId)
-}
 
 function formatDate(dateStr: string): string {
   try {
@@ -231,12 +224,5 @@ function formatDate(dateStr: string): string {
   font-weight: 500;
 }
 
-.played-badge {
-  padding: 0.25rem 0.5rem;
-  background: #2ecc71;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: white;
-}
+
 </style>

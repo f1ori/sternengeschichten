@@ -12,7 +12,7 @@ Your progressive web app for the Sternengeschichten podcast has been successfull
 
 2. **Episode List**
    - Shows all episodes with episode number, title, duration, and publication date
-   - Visual badge "Gehört" (Heard) for already-played episodes
+ 
    - Visual badge "Nächste" (Next) for the suggested next episode
    - Click to select and play any episode
    - Scrollable list optimized for 600+ episodes
