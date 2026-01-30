@@ -19,7 +19,7 @@ Diese App ist **nicht** offiziell mit Florian Freistetter oder dem Sternengeschi
 - 🎙️ **600+ Episoden streamen** - Keine Downloads nötig, direkt aus dem Heimnetz
 - 📱 **Progressive Web App** - Installierbar auf Desktop und mobilen Geräten
 - 💾 **Lokales Feed-Caching** - RSS-Feed wird lokal gespeichert, manuelles Aktualisieren möglich
-- 🔖 **Merkt sich die zuletzt gehörte Episode** - Verfolgt den Fortschritt pro Episode
+- 🔖 **Merkt sich die zuletzt angezeigte Episode** - Speichert nur die ID der zuletzt angezeigten Episode (keine Zeitpositionen)
 - 🎚️ **Abspielgeschwindigkeit** - Unterstützt 0.75x bis 2x Geschwindigkeit
 - ⏩ **Schnelle Navigation** - ±30 Sekunden Spulen und Fortschrittsleiste
 - 📴 **Offline Support** - Basis-Offline-Funktionalität durch Service Worker
@@ -62,8 +62,8 @@ npm preview
 2. **Feed aktualisieren** (optional) - Klicke "Feed aktualisieren" für die neuesten Episoden
 3. **Episode auswählen** - Klicke auf eine Episode in der Liste
 4. **Abspielen** - Nutze die Play/Pause, Spulen und Geschwindigkeitsregler
-5. **Fortschritt speichern** - Der aktuelle Fortschritt pro Episode wird automatisch gespeichert
-6. **Nächste Episode** - Beim nächsten Start wird die Episode nach der zuletzt gehörten vorgeschlagen
+5. **Fortschritt speichern** - Es wird nur die zuletzt angezeigte Episode gespeichert (ID), nicht die exakte Zeitposition
+6. **Nächste Episode** - Beim nächsten Start wird die Episode nach der zuletzt angezeigten vorgeschlagen
 
 ## Architektur
 
@@ -72,7 +72,7 @@ npm preview
 
 ### State Management (Pinia)
 - **podcastStore** - Verwaltet die Episode-Liste
-- **playbackStore** - Speichert Abspielposition, zuletzt gehörte Episode, persistiert in localStorage
+- **playbackStore** - Speichert nur die zuletzt angezeigte Episode (ID), persistiert in localStorage
 
 ### Komponenten
 - **App.vue** - Main-Container, Feed-Management und Layout

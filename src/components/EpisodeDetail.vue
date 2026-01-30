@@ -118,10 +118,9 @@ const playbackRate = ref('1')
 watch(() => props.episode, (newEpisode) => {
   if (newEpisode && audioElement.value) {
     audioElement.value.src = newEpisode.audioUrl
-    // Restore playback position for this episode
-    const position = playbackStore.playbackPositions.get(newEpisode.id)?.position ?? 0
-    audioElement.value.currentTime = position
-    currentTime.value = position
+    // Start from beginning (we don't store time positions)
+    audioElement.value.currentTime = 0
+    currentTime.value = 0
   }
 }, { immediate: true })
 
@@ -132,6 +131,7 @@ const togglePlay = () => {
     audioElement.value.pause()
   } else {
     audioElement.value.play()
+    if (props.episode) playbackStore.setCurrentEpisode(props.episode.id)
   }
   isPlaying.value = !isPlaying.value
 }
@@ -158,9 +158,7 @@ const seek = (event: Event) => {
 const updatePlaybackPosition = () => {
   if (audioElement.value) {
     currentTime.value = audioElement.value.currentTime
-    if (props.episode) {
-      playbackStore.updatePlaybackPosition(props.episode.id, currentTime.value)
-    }
+    // We no longer store time positions — do not persist currentTime
   }
 }
 

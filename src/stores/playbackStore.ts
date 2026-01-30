@@ -1,27 +1,18 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-export interface PlaybackPosition {
-  episodeId: string
-  position: number
-  timestamp: number
-}
-
 const STORAGE_KEY = 'sternengeschichten_playback'
 
 export const usePlaybackStore = defineStore('playback', () => {
   const currentEpisodeId = ref<string | null>(null)
   const selectedEpisodeId = ref<string | null>(null)
-  const playbackPositions = ref<Map<string, PlaybackPosition>>(new Map())
   const playedEpisodes = ref<Set<string>>(new Set())
-
-  const getCurrentPlaybackPosition = computed(() => {
-    if (!selectedEpisodeId.value) return 0
-    return playbackPositions.value.get(selectedEpisodeId.value)?.position ?? 0
-  })
 
   const selectEpisode = (episodeId: string) => {
     selectedEpisodeId.value = episodeId
+    // Remember the last displayed episode immediately (even if not played)
+    currentEpisodeId.value = episodeId
+    saveToStorage()
   }
 
   const markEpisodePlayed = (episodeId: string) => {
@@ -31,19 +22,20 @@ export const usePlaybackStore = defineStore('playback', () => {
     saveToStorage()
   }
 
-  const updatePlaybackPosition = (episodeId: string, position: number) => {
-    playbackPositions.value.set(episodeId, {
-      episodeId,
-      position,
-      timestamp: Date.now()
-    })
+  // Remember only the episode id (no time positions)
+  const setCurrentEpisode = (episodeId: string) => {
+    currentEpisodeId.value = episodeId
     saveToStorage()
+  }
+
+  // Backwards-compatible alias (accepts only episodeId now)
+  const updatePlaybackPosition = (episodeId: string) => {
+    setCurrentEpisode(episodeId)
   }
 
   const saveToStorage = () => {
     const data = {
       currentEpisodeId: currentEpisodeId.value,
-      playbackPositions: Array.from(playbackPositions.value.entries()),
       playedEpisodes: Array.from(playedEpisodes.value)
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
@@ -55,8 +47,11 @@ export const usePlaybackStore = defineStore('playback', () => {
       try {
         const data = JSON.parse(stored)
         currentEpisodeId.value = data.currentEpisodeId
-        playbackPositions.value = new Map(data.playbackPositions || [])
         playedEpisodes.value = new Set(data.playedEpisodes || [])
+        // Ensure the UI selects the last displayed episode after restoring
+        if (currentEpisodeId.value && !selectedEpisodeId.value) {
+          selectedEpisodeId.value = currentEpisodeId.value
+        }
       } catch (error) {
         console.error('Failed to restore playback state:', error)
       }
@@ -66,11 +61,10 @@ export const usePlaybackStore = defineStore('playback', () => {
   return {
     currentEpisodeId,
     selectedEpisodeId,
-    playbackPositions,
     playedEpisodes,
-    getCurrentPlaybackPosition,
     selectEpisode,
     markEpisodePlayed,
+    setCurrentEpisode,
     updatePlaybackPosition,
     restore
   }

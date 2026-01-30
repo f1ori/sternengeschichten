@@ -25,11 +25,10 @@ Your progressive web app for the Sternengeschichten podcast has been successfull
    - Progress bar with time display
 
 4. **Listen History & Suggestions**
-   - Tracks last heard episode ID
-   - Stores playback position for each episode in localStorage
-   - Restores playback position when returning to an episode
+   - Tracks last displayed episode ID
+   - Stores only the ID of the last displayed episode in localStorage (no time positions)
    - On app launch, automatically suggests the next unheard episode (without auto-playing)
-   - Clean UI indicator showing which episode was last heard
+   - Clean UI indicator showing which episode was last displayed
 
 5. **PWA Features**
    - Installable on desktop and mobile devices
@@ -75,7 +74,7 @@ npm run preview  # Preview production build
 ### 💾 Data Persistence
 
 - **IndexedDB**: Entire podcast feed (episodes, URLs, metadata) - survives app updates
-- **localStorage**: Playback state (last heard episode, position per episode, settings)
+- **localStorage**: Playback state (last displayed episode ID and settings)
 
 ### 🎨 Design Features
 
@@ -94,8 +93,8 @@ npm run preview  # Preview production build
    - Suggests first episode if nothing played yet
 
 2. **During Playback**:
-   - Current playback position updates in real-time
-   - Automatically saved to localStorage every second
+   - We remember which episode is currently playing (ID only)
+   - No automatic saving of per-episode time positions
    - User can manually refresh feed anytime
 
 3. **On Next Launch**:
