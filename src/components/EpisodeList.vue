@@ -16,7 +16,7 @@
       />
     </div>
 
-    <div class="episode-list">
+    <div class="episode-list" ref="episodeListRef">
       <div v-if="filteredEpisodes.length === 0" class="empty-state">
         <p v-if="episodes.length === 0">No episodes found. Refresh feed?</p>
         <p v-else>No episodes match your search.</p>
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import type { Episode } from '../services/feedService'
 
 const props = defineProps<{
@@ -51,6 +51,7 @@ defineEmits<{
 }>()
 
 const searchQuery = ref('')
+const episodeListRef = ref<HTMLElement | null>(null)
 
 const filteredEpisodes = computed(() => {
   if (!searchQuery.value.trim()) {
@@ -73,6 +74,25 @@ function formatDate(dateStr: string): string {
     return ''
   }
 }
+
+const scrollToCurrentEpisode = () => {
+  if (!episodeListRef.value) return
+
+  const active = episodeListRef.value.querySelector('.episode-item.active') as HTMLElement | null
+  if (active) {
+    // Center the active item in the list without animation
+    active.scrollIntoView({ block: 'center', behavior: 'auto' })
+  }
+}
+
+// When the component mounts or the current episode changes, ensure the active item is visible
+onMounted(() => {
+  nextTick(scrollToCurrentEpisode)
+})
+
+watch(() => props.currentEpisodeId, () => {
+  nextTick(scrollToCurrentEpisode)
+}, { immediate: true })
 </script>
 
 <style scoped>
