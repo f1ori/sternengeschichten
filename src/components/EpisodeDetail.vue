@@ -121,6 +121,7 @@ watch(() => props.episode, (newEpisode) => {
     // Start from beginning (we don't store time positions)
     audioElement.value.currentTime = 0
     currentTime.value = 0
+    isPlaying.value = false
   }
 }, { immediate: true })
 
